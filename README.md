@@ -1,79 +1,163 @@
-# Lazy Bunny - Backend для платформи перегляду фільмів
+# Lazy-Bunny-Back-End 🐰
 
-## Опис проекту
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 
-Lazy Bunny – це серверна частина веб-програми для перегляду фільмів, реалізована на Node.js з використанням Express.js та Prisma ORM.
+**Lazy-Bunny-Back-End** is a robust server-side application developed
+using Node.js and TypeScript. It serves as the backend API, handling
+database operations, authentication, and business logic.
 
-Програма обробляє запити клієнтів, керує базою даних фільмів, користувачів та відгуків.
+---
 
-## Технології  
+## 🚀 Tech Stack
 
-- Серверне середовище: Node.js
-- Фреймворк для API: Express.js   
-- Автентифікація: JWT
-- Хешування паролів: bcrypt
+- **Runtime:** Node.js
+- **Language:** TypeScript
+- **ORM:** Prisma
+- **Database:** SQL (SQLite - configured via environment)
+- **Package Manager:** npm
 
-## Схема проекту
+---
 
- mermaid
-    graph TD
-    ROOT["/ (root)"] --> prisma
-    ROOT --> src
-    ROOT --> client
-    ROOT --> config
-    ROOT --> middlewares
-    ROOT --> templates
-    ROOT --> types
-    ROOT --> static/img
-    ROOT --> .env
-    ROOT --> .gitignore
-    ROOT --> README.md
-    ROOT --> package.json
-    ROOT --> tsconfig.json
-    ROOT --> index.ts
+## 📂 Project Structure
 
-    prisma --> db
-    prisma --> migrations
-    prisma --> schema
-    prisma --> seed.ts
+```text
+Lazy-Bunny-Back-End/
+├── src/
+│   ├── client/
+│   ├── config/
+│   ├── GenresApp/
+│   ├── middlewares/
+│   ├── MoviesApp/
+│   ├── types/
+│   ├── UserApp/
+│   └── index.ts
+├── static/
+│   ├── img/
+├── prisma/
+├── package.json
+├── tsconfig.json
+└── .env
+```
 
-    src --> GenresApp
-    src --> MoviesApp
-    src --> UserApp
+---
 
-[Посилання на FigJam-схему](https://www.figma.com/board/UbgQAU8TwanZH2Pac5Rrbo/LazyBunny-BackEnd-Scheme?node-id=0-1&t=m0giMnyBWQRT1mkY-1)
+## 🛠 Getting Started
 
-## Запуск проекту 
+## Prerequisites
 
-1. Клонування репозиторію git clone
-2. Встановлення залежностей npm install
-3. Запуск проекту npm run start
+- Node.js (LTS)
+- npm or yarn
 
-## Ендпоінти
+---
 
-| Метод      | Маршрут                | Опис |
-| GET | /genres | Отримання всіх жанрів. |
-| POST | /genres | Додавання жанру. |
-| PUT | /genres/:id | Відновлення жанрів. |
-| DELETE | /genres/:id | Видалення жанру. |
-| GET | /movies | Отримання фільмів. |
-| GET | /movies/:id | Отримання фільму за Id. |
-| GET | /movies/actor/:id | Отримання актора за Id. |
-| POST | /movies | Додавання фільму. |
-| put | /movies/:id | Оновлення інформації про фільм. |
-| DELETE | /movies/:id | Видалення фільму. |
-| GET | /users | Отримання користувачів. |
-| GET | /users/me | Отримання інформації про користувача. |
-| GET | /users/:id | Отримання користувача за Id. |
-| put | /users/:id | Оновлення інформації про користувача. |
-| DELETE | /users/:id | Видалення користувача за допомогою Id. |
-| DELETE | /users/comment/:id | Видалення коментарів за допомогою Id. |
-| POST | /users/login | Авторизація користувача. |
-| POST | /users/reg | Реєстрація користувача. |
+## Installation
 
-## Команда розробки
+```bash
+git clone <repository-url>
+cd Lazy-Bunny-Back-End
+```
 
-- Єгор Гончаров - [GitHub](https://github.com/YehorHoncharov)
-- Семен Гераймович - [GitHub](https://github.com/arman455)
-- Богдан Рубанов - [GitHub](https://github.com/BohdanRubanov)
-- Мирослава Теліус - [GitHub](https://github.com/AsolaRim)
+---
+
+# ⚙️ Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+# 🌱 Environment Configuration
+
+Create a `.env` file:
+
+### Example `.env`:
+
+    PORT=3000
+
+SQLite:
+
+    "file:../../db/Database.db"
+
+---
+
+# 🗄 Database Setup
+
+```bash
+npm run prisma:migrate
+npx run prisma generate
+```
+
+---
+
+# ▶️ Running the Server
+
+## Development Mode
+
+```bash
+npm run start
+```
+
+## Production
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+# 📡 API Endpoints
+
+Base URL:
+
+    http://localhost:3000
+
+## 👤 Users (/users)
+
+| Method | Endpoint     | Description                           |
+| ------ | ------------ | ------------------------------------- |
+| POST   | /reg         | Register a new user                   |
+| POST   | /login       | Login user                            |
+| GET    | /            | Get all users                         |
+| GET    | /me          | Get information about user from token |
+| PUT    | /:id         | Update user by id                     |
+| DELETE | /:id         | Delete user by id                     |
+| GET    | /:id         | Get user by id                        |
+| DELETE | /comment/:id | Delete user's comment by id           |
+| PUT    | /fav/:id     | Update user's favorite film by id     |
+
+## 📝 Movies (/movies)
+
+| Method | Endpoint   | Description             |
+| ------ | ---------- | ----------------------- |
+| GET    | /          | Get all movies          |
+| GET    | /:id       | Get movie by id         |
+| GET    | /actor/:id | Get movie's actor by id |
+| POST   | /create    | Create movie            |
+| POST   | /:id       | Create comment          |
+| PUT    | /:id       | Update movie by id      |
+| DELETE | /:id       | Delete movie by id      |
+
+## 🖼️ Genres (/genres)
+
+| Method | Endpoint | Description        |
+| ------ | -------- | ------------------ |
+| GET    | /        | Get all genres     |
+| POST   | /        | Create genre       |
+| PUT    | /:id     | Update genre by id |
+| DELETE | /:id     | Delete genre by id |
+
+---
+
+# 📜 NPM Scripts
+
+| Command                | Description            |
+| ---------------------- | ---------------------- |
+| npm run start          | Run project            |
+| npm run prisma:format  | Format prisma's models |
+| npm run prisma:migrate | Run migrations         |
+| npm run prisma:seed    | Run seeds              |

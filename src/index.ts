@@ -8,7 +8,7 @@ import genreRouter from './GenresApp/genreRouter';
 const app: Express = express();
 
 app.use(express.json())
-const PORT = 3001;
+const PORT = 3000;
 const HOST = 'localhost';
 
 app.use(express.json());
@@ -34,5 +34,5 @@ app.get('/', (req, res) => {
 
 
 app.listen(PORT, HOST, () => {
-  console.log('http://localhost:3001/');
+  console.log(`http://${HOST}:${PORT}/`);
 });
